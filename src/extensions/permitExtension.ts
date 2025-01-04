@@ -6,10 +6,22 @@ export const permitExtension = Prisma.defineExtension({
   query: {
     resource: {
       async create({ args, query }) {
-        // Direct resource check without additional formatting
-        const allowed = await permit.check(args.data.ownerId, 'create', args.data.category);
-        if (!allowed) throw new Error('Unauthorized');
-        return query(args);
+        try {
+          const allowed = await permit.check(
+            args.data.ownerId, 
+            'create', 
+            args.data.category
+          );
+          
+          if (!allowed) {
+            throw new Error('Unauthorized');
+          }
+          
+          return query(args);
+        } catch (error) {
+          console.error('Permit check error:', error);
+          throw new Error('Unauthorized');
+        }
       }
     }
   }
