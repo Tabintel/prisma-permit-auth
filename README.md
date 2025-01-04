@@ -2,6 +2,9 @@
 
 Asset management system with role-based access control using Prisma and Permit.io.
 
+![Permit Dashboard](images/permit-dashboard.png)
+
+
 ### Features
 - Role-based access control with Permit.io
 - Asset category management
@@ -22,7 +25,7 @@ cd prisma-permit-auth
 npm install
 ```
 
-3. Create .env file and setup the database connection:
+3. Create an `.env` file in the root directory, setup the database connection, and enter the details below. [Get your Permit.io SDK key](https://docs.permit.io/getting-started/quickstart)
 ```bash
 DATABASE_URL="your-postgresql-url"
 PERMIT_SDK_KEY="your-permit-key"
